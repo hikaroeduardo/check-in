@@ -14,11 +14,13 @@
   "description": "",
   "devDependencies": {
     "@types/node": "^20.14.2",
+    "prisma": "^5.15.0",
     "tsup": "^8.1.0",
     "tsx": "^4.15.2",
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@prisma/client": "^5.15.0",
     "dotenv": "^16.4.5",
     "fastify": "^4.27.0",
     "zod": "^3.23.8"
