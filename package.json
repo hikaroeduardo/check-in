@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "dev": "tsx watch src/server.ts",
     "start": "node build/server.js",
     "build": "tsup src --out-dir build"
@@ -18,7 +19,9 @@
     "prisma": "^5.15.0",
     "tsup": "^8.1.0",
     "tsx": "^4.15.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vite-tsconfig-paths": "^4.3.2",
+    "vitest": "^1.6.0"
   },
   "dependencies": {
     "@prisma/client": "^5.15.0",
