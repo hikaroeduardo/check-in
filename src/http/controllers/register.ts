@@ -13,11 +13,13 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
 
     const { name, email, password } = registerBodySchema.parse(request.body);
 
+    const passwordHash = await hash(password, 6);
+
     await prisma.user.create({
         data: {
             name,
             email,
-            password_hash: password,
+            password_hash: passwordHash,
         },
     });
 
