@@ -10,18 +10,18 @@ let gymsRepository: InMemoryGymsRepository;
 let checkInUseCase: CheckInUseCase;
 
 describe("Check-in Use Case", () => {
-    beforeEach(() => {
+    beforeEach(async () => {
         checkInRepository = new InMemoryCheckInsRepository();
         gymsRepository = new InMemoryGymsRepository();
         checkInUseCase = new CheckInUseCase(checkInRepository, gymsRepository);
 
-        gymsRepository.items.push({
+        await gymsRepository.create({
             id: "gym-01",
             title: "JavaScript Gym",
             description: "",
             phone: "",
-            latitude: new Decimal(-5.1120607),
-            longitude: new Decimal(-42.8150236),
+            latitude: -5.1120607,
+            longitude: -42.8150236,
         });
 
         vi.useFakeTimers();
