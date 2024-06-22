@@ -19,10 +19,27 @@ export async function authenticate(
     try {
         const authenticateUseCase = makeAuthenticateUseCase();
 
-        await authenticateUseCase.execute({
+        const { user } = await authenticateUseCase.execute({
             email,
             password,
         });
+
+        /*
+            - Criar um token passando as informações do usuário
+                - Passar o ID do usuário (Ou outra informação que o identifique, dentro de "sub")
+            - Retornar o token JWT
+        */
+
+        const token = await reply.jwtSign(
+            {},
+            {
+                sign: {
+                    sub: user.id,
+                },
+            }
+        );
+
+        return reply.status(200).send({ token });
     } catch (err) {
         if (err instanceof InvalidCredentialsError) {
             return reply.status(400).send({ message: err.message });
@@ -30,6 +47,4 @@ export async function authenticate(
 
         throw err;
     }
-
-    return reply.status(200).send();
 }
