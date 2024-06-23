@@ -1,7 +1,6 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 
 import { z } from "zod";
-import { makeSearchGymsUseCase } from "@/http/use-cases/factories/make-search-gym-use-case";
 import { makeFetchNearByGymsUseCase } from "@/http/use-cases/factories/make-fetch-nearby-gyms-use-case";
 
 export async function nearbyGym(request: FastifyRequest, reply: FastifyReply) {
