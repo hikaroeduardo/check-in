@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "vitest run --dir src/use-cases",
-    "test:watch": "vitest --dir src/use-cases",
+    "test": "vitest run --dir src/http/use-cases",
+    "test:watch": "vitest --dir src/http/use-cases",
     "test:coverage": "vitest run --coverage",
     "dev": "tsx watch src/server.ts",
     "start": "node build/server.js",
