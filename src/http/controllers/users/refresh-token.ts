@@ -6,8 +6,10 @@ export async function refreshToken(
 ) {
     await request.jwtVerify({ onlyCookie: true });
 
+    const { role } = request.user;
+
     const token = await reply.jwtSign(
-        {},
+        { role },
         {
             sign: {
                 sub: request.user.sub,
