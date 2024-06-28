@@ -8,10 +8,41 @@ import { profile } from "./profile";
 import { refreshToken } from "./refresh-token";
 
 export async function usersRoutes(app: FastifyInstance) {
-    app.post("/users", register);
-    app.post("/sessions", authenticate);
+    app.post(
+        "/users",
+        {
+            schema: {
+                description: "Adicionar um novo usuário",
+                summary: "Adicionar um novo usuário",
+                tags: ["users"],
+            },
+        },
+        register
+    );
 
-    app.patch("/token/refresh", refreshToken);
+    app.post(
+        "/sessions",
+        {
+            schema: {
+                description: "Logar um usuário",
+                summary: "Logar um usuário",
+                tags: ["users"],
+            },
+        },
+        authenticate
+    );
+
+    app.patch(
+        "/token/refresh",
+        {
+            schema: {
+                description: "end-point para refresh token",
+                summary: "end-point para refresh token",
+                tags: ["tokens"],
+            },
+        },
+        refreshToken
+    );
 
     // Precisam de autenticação
 
@@ -21,5 +52,16 @@ export async function usersRoutes(app: FastifyInstance) {
         - Busca informações do usuário baseado no token
     */
 
-    app.get("/me", { onRequest: [verifyJWT] }, profile);
+    app.get(
+        "/me",
+        {
+            schema: {
+                description: "Buscar dados de usuário",
+                summary: "Buscar dados de usuário",
+                tags: ["users"],
+            },
+            onRequest: [verifyJWT],
+        },
+        profile
+    );
 }
